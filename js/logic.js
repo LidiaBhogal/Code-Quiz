@@ -8,18 +8,19 @@ var questionIndex = 0
 var time = document.getElementById('time');
 var count = 60
 startButton.addEventListener("click", startGame)
-  
 
-function startGame(){
-  console.log("button clicked" );
-   startButton.classList.add('hide');
- questionTitle.classList.remove('hide')
- questionsDiv.classList.remove('hide')
-   setNextQuestion()
-   
+
+function startGame() {
+  console.log("button clicked");
+  startButton.classList.add('hide');
+  questionTitle.classList.remove('hide')
+  questionsDiv.classList.remove('hide')
+  setNextQuestion()
+  setTime()
+
 }
 
-function setNextQuestion (){
+function setNextQuestion() {
   if (myQuestions[questionIndex]) {
     showQuestion()
   } else {
@@ -29,7 +30,7 @@ function setNextQuestion (){
 }
 
 
-function showQuestion(question){
+function showQuestion(question) {
   questionTitle.textContent = myQuestions[questionIndex].questionTitle
   choices.innerHTML = ''
   for (let i = 0; i < 4; i++) {
@@ -37,24 +38,39 @@ function showQuestion(question){
 
     button.textContent = myQuestions[questionIndex].choices[i];
 
-    button.addEventListener('click', function()
-    {
-      if (myQuestions[questionIndex].choices[i]=== myQuestions[questionIndex].answer) {
+    button.addEventListener('click', function () {
+      if (myQuestions[questionIndex].choices[i] === myQuestions[questionIndex].answer) {
         console.log('correct');
         questionIndex++
         setNextQuestion()
-        
+
       } else {
         questionIndex++
         setNextQuestion()
         console.log('incorrect');
-      } 
+      }
     })
 
     choices.appendChild(button)
   }
 }
 
+var timerEl = document.getElementById('time');
+var secondsLeft = 60
+function setTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timerEl.textContent = secondsLeft;
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      sendMessage();
+
+    }
+  },1000);
+}
+function sendMessage() {
+  timerEl.textContent = '';
+}
 
 
 
