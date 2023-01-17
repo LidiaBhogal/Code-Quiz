@@ -32,7 +32,7 @@ In this task I used for loops and if statements as well as variables. Below is a
 
 If you would like to see the finished website please click on the link below
 
-
+https://lidiabhogal.github.io/Code-Quiz/
 
 ## License
 
